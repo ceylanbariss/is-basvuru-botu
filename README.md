@@ -180,6 +180,6 @@ python calistir.py --sahte
 
 ## Geliştiren
 
-**Barış Ceylan** — Bilişim Sistemleri Mühendisi · [LinkedIn](https://www.linkedin.com/in/bar%C4%B1%C5%9F-ceylan) · [GitHub](https://github.com/ceylanbariss)
+**Barış Ceylan** — Bilişim Sistemleri Mühendisi · [LinkedIn](https://www.linkedin.com/in/bar%C4%B1%C5%9F-ceylan-177296256) · [GitHub](https://github.com/ceylanbariss)
 
 Lisans: [MIT](LICENSE)
