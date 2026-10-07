@@ -1,0 +1,31 @@
+{
+ "jobs": [
+  {
+   "id": 1,
+   "url": "https://remotive.com/remote-jobs/ai/5",
+   "title": "AI Automation Specialist (Junior)",
+   "company_name": "RemoteCo",
+   "candidate_required_location": "Worldwide",
+   "publication_date": "2099-01-01T00:00:00",
+   "description": "<p>Build <b>AI</b> workflows.</p><ul><li>Python</li></ul>"
+  },
+  {
+   "id": 2,
+   "url": "u2",
+   "title": "Content Reviewer - United States",
+   "company_name": "TELUS Digital",
+   "candidate_required_location": "USA",
+   "publication_date": "2099-01-01T00:00:00",
+   "description": "x"
+  },
+  {
+   "id": 3,
+   "url": "u3",
+   "title": "Senior Shopify Developer",
+   "company_name": "Sanctuary",
+   "candidate_required_location": "Worldwide",
+   "publication_date": "2099-01-01T00:00:00",
+   "description": "x"
+  }
+ ]
+}

@@ -1,0 +1,5 @@
+requests
+pyyaml
+google-genai
+python-dotenv
+google-auth

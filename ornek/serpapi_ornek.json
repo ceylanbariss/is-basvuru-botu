@@ -1,0 +1,78 @@
+{
+ "jobs_results": [
+  {
+   "title": "Odoo Fonksiyonel Danışman",
+   "company_name": "Ege Yazılım",
+   "location": "İstanbul",
+   "via": "via LinkedIn",
+   "description": "Odoo Satış ve Stok modüllerinde deneyimli danışman arıyoruz. CV'nizi kariyer@egeyazilim.com.tr adresine gönderin.",
+   "apply_options": [
+    {
+     "title": "LinkedIn",
+     "link": "https://www.linkedin.com/jobs/view/1"
+    }
+   ],
+   "detected_extensions": {
+    "posted_at": "2 gün önce"
+   }
+  },
+  {
+   "title": "Junior Business Analyst",
+   "company_name": "Fintek A.Ş.",
+   "location": "İstanbul (Hibrit)",
+   "via": "via Kariyer.net",
+   "description": "Gereksinim analizi, dokümantasyon, SQL.",
+   "apply_options": [
+    {
+     "title": "Fintek Kariyer",
+     "link": "https://boards.greenhouse.io/fintek/jobs/123"
+    },
+    {
+     "title": "Kariyer.net",
+     "link": "https://www.kariyer.net/is-ilani/2"
+    }
+   ],
+   "detected_extensions": {
+    "posted_at": "5 saat önce"
+   }
+  },
+  {
+   "title": "Senior ERP Architect",
+   "company_name": "Büyük Holding",
+   "location": "Ankara",
+   "via": "via Indeed",
+   "description": "10+ yıl SAP deneyimi.",
+   "apply_options": [
+    {
+     "title": "Indeed",
+     "link": "https://tr.indeed.com/3"
+    }
+   ],
+   "detected_extensions": {
+    "posted_at": "1 gün önce"
+   }
+  },
+  {
+   "title": "İş Analisti",
+   "company_name": "Eski İlan Ltd.",
+   "location": "İzmir",
+   "via": "via LinkedIn",
+   "description": "x",
+   "apply_options": [],
+   "detected_extensions": {
+    "posted_at": "3 hafta önce"
+   }
+  },
+  {
+   "title": "Odoo Fonksiyonel Danışman",
+   "company_name": "Ege Yazılım",
+   "location": "İstanbul",
+   "via": "via Kariyer.net",
+   "description": "aynı ilan başka kaynaktan",
+   "apply_options": [],
+   "detected_extensions": {
+    "posted_at": "2 gün önce"
+   }
+  }
+ ]
+}

@@ -1,0 +1,134 @@
+# Örnek aday profili — kendi profilini oluşturmak için bu dosyayı profil.yaml olarak kopyalayıp düzenle.
+# profil.yaml yoksa bot bu örnek profille çalışır (demo).
+# Madde etiketleri: erp, ba (iş analizi), ai, vibe_coding, web, urun, liderlik
+
+kisisel:
+  ad_soyad: Deniz Yılmaz
+  unvan: Bilişim Sistemleri Mühendisi
+  konum: İstanbul, Türkiye
+  telefon: "+90 500 000 00 00"
+  eposta: deniz.yilmaz@example.com
+  linkedin: linkedin.com/in/ornek-profil
+  github: github.com/ornek-kullanici
+
+tercihler:
+  basvuru_dili: tr
+  calisma_sekli: [uzaktan, hibrit, istanbul_ofis]
+  kidem: [stajyer, yeni_mezun, junior]
+  hedef_roller: [erp_danismani, is_analisti, ai]
+  min_eslesme_puani: 70
+
+ozet: >
+  Bilişim Sistemleri Mühendisliği mezunuyum. ERP projelerinde gereksinim analizi ve son kullanıcı
+  eğitimi, SQL ile raporlama ve yapay zeka destekli araçlarla web uygulaması geliştirme deneyimim var.
+
+deneyimler:
+  - id: erp_staj
+    rol: ERP Danışmanlık Stajyeri
+    sirket: Örnek Yazılım A.Ş.
+    tarih: 07/2026 – 08/2026
+    maddeler:
+      - {metin: "Satış ve Stok modüllerinde fonksiyonel yapılandırma çalışmalarına destek verdim.", etiket: [erp, ba]}
+      - {metin: "Son kullanıcılar için kullanım kılavuzu hazırladım.", etiket: [erp, ba]}
+      - {metin: "SQL sorgularıyla müşteriye özel raporlar oluşturdum.", etiket: [erp, web]}
+  - id: ba_staj
+    rol: IT Analist Stajyeri
+    sirket: Örnek Holding – IT Departmanı
+    tarih: 07/2025 – 09/2025
+    maddeler:
+      - {metin: "İş analistleriyle birlikte gereksinim analizi süreçlerini gözlemleyip destekledim.", etiket: [ba]}
+      - {metin: "Paydaş toplantılarının dokümantasyonunu yaptım.", etiket: [ba]}
+  - id: proje
+    rol: Geliştirici (Kişisel Proje)
+    sirket: ornek-proje.com
+    tarih: Devam Ediyor
+    maddeler:
+      - {metin: "AI destekli geliştirme araçlarıyla bir web platformunu uçtan uca geliştirdim.", etiket: [ai, vibe_coding, web]}
+
+egitim:
+  - {okul: Örnek Üniversitesi, bolum: Bilişim Sistemleri Mühendisliği (Lisans), mezuniyet: 2026}
+
+sertifikalar:
+  - {ad: SQL ile Veritabanı Sorgulama}
+  - {ad: İş Analizi Temelleri}
+
+beceriler:
+  ba: [İş Analizi, Süreç Analizi, Gereksinim Yönetimi, Dokümantasyon]
+  yonetim: [Proje Yönetimi, Çevik Metodolojiler]
+  teknik: [SQL, Python, Git/GitHub]
+  ai: [AI Destekli Geliştirme, Prompt Mühendisliği]
+
+diller:
+  - {dil: Türkçe, seviye: Ana dil}
+  - {dil: İngilizce, seviye: Orta}
+
+arama:
+  google_web:             # KAPALI: SerpApi kotası (ayda 250) artık tamamen 'kesif' bölümüne ayrıldı.
+    gruplar: []           # LinkedIn/Kariyer.net ilanları 'alarm' bölümünden (iş alarmı e-postaları) geliyor.
+  google_jobs:            # Türkiye'yi desteklemiyor → kapalı
+    aktif: false
+    konum: "Istanbul, Turkey"
+    sorgular: []
+  remotive:               # ücretsiz remote iş API'si (arama terimini tam uygulamıyor → ön filtre şart)
+    sorgular: [business analyst, ERP, AI]
+  on_filtre:              # Gemini'ye gitmeden elenir (kota tasarrufu). Google Jobs'a sadece konum filtresi uygulanır.
+    baslik_kelimeleri: [analyst, analist, erp, "ai ", " ai", "yapay zeka", automation, otomasyon,
+                        "no-code", "low-code", "prompt", "llm", consultant, danışman, product, ürün,
+                        crm, sap, "iş zekası", "business intelligence", "dijital dönüşüm", süreç, process,
+                        "veri analisti", "data analyst", "bilgi sistemleri", "information systems"]
+    baslik_haric: [odoo]    # bu kelimeler başlıkta geçerse her kaynakta elenir
+    konum_haric: [united states, usa, "us only", canada, "north america", latam, "latin america", australia]
+  max_ilan_yasi_gun: 7    # daha eski ilanları atla
+  calistirma_basina_max_eslestirme: 40   # Gemini kotasını korur
+
+# ------------------------------------------------------------------------------------------------
+# YAPI 1 — KEŞİF: e-postayla başvuru alan ilanları ve şirket İK sayfalarını bulup OTOMATİK başvurur
+kesif:
+  aktif: true
+  kuru_calisma: true          # true → hiçbir şey göndermez, sadece ne gönderileceğini raporlar
+  gunluk_sorgu: 8              # SerpApi ücretsiz: ayda 250 arama → günde en fazla 8
+  donem: "qdr:m"               # son 1 ay (aynı sayfa iki kez işlenmez; kariyer sayfaları uzun süre yayında kalır)
+  max_sayfa: 40                # günde en fazla kaç sayfa AI ile değerlendirilsin
+  gunluk_gonderim: 20          # günde en fazla kaç başvuru e-postası
+  sirket_bekleme_gun: 30       # aynı şirkete bu süre içinde tekrar yazma
+  min_puan_ilan: 75
+  min_puan_acik_basvuru: 70
+  haric_kelimeler: [odoo]      # pozisyonda bunlar geçerse başvurma
+  roller: [iş analisti, sistem analisti, süreç analisti, iş zekası uzmanı, ERP danışmanı, ERP uzmanı,
+           SAP danışmanı, yapay zeka uzmanı, BT uzmanı, bilgi işlem uzmanı, proje uzmanı, uzman yardımcısı]
+  # İlan siteleri dışlanır (onlar 'alarm' bölümünden geliyor); sadece şirket siteleri ve küçük ilan sayfaları kalır
+  ilan_sablonlari:
+    - '"{rol}" "özgeçmişinizi" "adresine" -site:kariyer.net -site:linkedin.com -site:indeed.com -site:secretcv.com -site:yenibiris.com -site:eleman.net -site:isbul.net'
+    - '"{rol}" "cv" "gönderebilirsiniz" -site:kariyer.net -site:linkedin.com -site:indeed.com -site:secretcv.com -site:isbul.net'
+    - '"{rol}" başvuru "e-posta" ilan -site:kariyer.net -site:linkedin.com -site:indeed.com -site:eleman.net -site:isbul.net'
+  alanlar: [yazılım, ERP, bilişim, teknoloji, danışmanlık, dijital dönüşüm, yazılım evi, SaaS]
+  acik_basvuru_sablonlari:
+    - '{alan} şirketi "ekibimize katılın" "özgeçmişinizi"'
+    - '{alan} firması "açık pozisyonlar" "insan kaynakları"'
+  anahtarlar: [kariyer, insan kaynakları, özgeçmiş, " cv", başvuru, iş ilanı, pozisyon, career, "hr@", "ik@"]
+
+# YAPI 2 — ALARM: LinkedIn ve Kariyer.net iş alarmı e-postalarından son 24 saatin ilanlarını sıralar
+alarm:
+  aktif: true
+  gun: 1                       # son kaç günün alarm e-postaları okunsun
+  listede_min_puan: 40         # sabah e-postasındaki listede gösterilecek en düşük puan
+  on_yazi_adet: 5              # en iyi kaç ilana ön yazı hazırlansın (tabloya eklenir)
+
+# Hazır CV havuzu — sistem her ilan için buradan birini seçer, CV üretmez.
+# Yeni CV eklemek için: PDF'i cv_havuzu klasörüne koy, buraya bir satır ekle.
+# "aciklama" alanı seçimi belirler: hangi ilanlara uygun olduğunu açıkça yaz.
+cv_havuzu:
+  - id: fotografli
+    dosya: ornek_cv_fotografli.pdf
+    aciklama: >
+      Fotoğraflı, modern tasarım. Türkiye'deki şirketlere doğrudan e-posta veya şirket
+      sayfası üzerinden yapılan başvurular için varsayılan CV.
+  - id: fotografsiz
+    dosya: ornek_cv_fotografsiz.pdf
+    aciklama: >
+      Fotoğrafsız, klasik tasarım. Ürün stratejisi/yol haritası maddesini içerir. Kurumsal ATS
+      sistemleri (Greenhouse, Lever, Workday vb.), yabancı şirketler, global remote ve
+      ürün yönetimi / iş analizi ağırlıklı ilanlar için.
+
+# Formlardaki ek soruların cevapları — soru kuyruğundan gelen cevaplarınla dolacak
+form_cevaplari: {}

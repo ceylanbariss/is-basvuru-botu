@@ -1,0 +1,55 @@
+name: Günlük ilan taraması
+
+on:
+  schedule:
+    - cron: "0 9 * * *"      # her gün 09:00 UTC = 12:00 Türkiye (GitHub birkaç dakika geciktirebilir)
+  workflow_dispatch:          # Actions sekmesinden elle çalıştırma
+    inputs:
+      kuru:
+        description: "Kuru çalışma: başvuru e-postası GÖNDERME, sadece raporla"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write             # görülen ilanlar veritabanını repoya geri yazmak için
+
+concurrency:
+  group: gunluk
+  cancel-in-progress: false
+
+jobs:
+  tara:
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Paketleri kur
+        run: pip install -r requirements.txt
+
+      - name: Tara, eşleştir, tabloya yaz, e-posta at
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_MODEL: ${{ vars.GEMINI_MODEL || 'gemini-3-flash-preview' }}
+          SERPAPI_KEY: ${{ secrets.SERPAPI_KEY }}
+          GOOGLE_SA_JSON: ${{ secrets.GOOGLE_SA_JSON }}
+          SHEET_ID: ${{ secrets.SHEET_ID }}
+          GMAIL_ADRES: ${{ secrets.GMAIL_ADRES }}
+          GMAIL_UYGULAMA_SIFRESI: ${{ secrets.GMAIL_UYGULAMA_SIFRESI }}
+          PYTHONIOENCODING: utf-8
+          PYTHONUNBUFFERED: "1"
+        run: python calistir.py --sessiz ${{ inputs.kuru && '--kuru' || '' }}
+
+      - name: Görülen ilanları kaydet
+        if: always()
+        run: |
+          git config user.name "basvuru-botu"
+          git config user.email "basvuru-botu@users.noreply.github.com"
+          git add -f veri/ilanlar.db
+          git diff --cached --quiet || git commit -m "ilan kaydı $(date +%F)"
+          git push
